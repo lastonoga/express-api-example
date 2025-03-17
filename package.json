@@ -1,48 +1,74 @@
 {
-  "name": "express-test",
-  "version": "1.0.0",
-  "license": "MIT",
-  "type": "module",
-  "devDependencies": {
-    "@tsconfig/node20": "^20.1.4",
-    "@types/express": "^5",
-    "@types/http-errors": "^2.0.4",
-    "@types/node": "^22.13.10",
-    "@typescript-eslint/eslint-plugin": "^8.26.1",
-    "@typescript-eslint/parser": "^8.26.1",
-    "eslint": "^9.22.0",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-prettier": "^5.2.3",
-    "prettier": "^3.5.3",
-    "prisma": "^6.5.0",
-    "tsconfig-paths": "^4.2.0"
-  },
-  "scripts": {
-    "dev": "tsx watch --tsconfig tsconfig.json -r tsconfig-paths/register index.ts",
-    "build": "yarn build:docs",
-    "build:docs": "tsx ./scripts/swagger.ts",
-    "test": "vitest run --globals index.spec.ts",
-    "validate": "vitest run --globals validate.spec.ts",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "database:migrate": "prisma migrate dev --name init_user_model"
-  },
-  "dependencies": {
-    "@prisma/client": "^6.5.0",
-    "compression": "^1.8.0",
-    "express": "^5",
-    "express-rate-limit": "^7.5.0",
-    "express-zod-api": "^22.11.2",
-    "http-errors": "^2.0.0",
-    "module-alias": "^2.2.3",
-    "swagger-ui-express": "^5.0.1",
-    "tsx": "^4.19.3",
-    "typescript": "^5.8.2",
-    "zod": "^3.24.2"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
-  }
+    "name": "express-test",
+    "version": "1.0.0",
+    "license": "MIT",
+    "type": "module",
+    "devDependencies": {
+        "@tsconfig/node20": "^20.1.4",
+        "@types/bcrypt": "^5.0.2",
+        "@types/express": "^5",
+        "@types/http-errors": "^2.0.4",
+        "@types/jsonwebtoken": "^9.0.9",
+        "@types/node": "^22.13.10",
+        "@typescript-eslint/eslint-plugin": "^8.26.1",
+        "@typescript-eslint/parser": "^8.26.1",
+        "eslint": "^9.22.0",
+        "eslint-config-prettier": "^10.1.1",
+        "eslint-plugin-prettier": "^5.2.3",
+        "husky": "^9.1.7",
+        "lint-staged": "^15.5.0",
+        "prettier": "^3.5.3",
+        "prisma": "^6.5.0",
+        "tsc-alias": "^1.8.11",
+        "tsconfig-paths": "^4.2.0"
+    },
+    "scripts": {
+        "dev": "tsx watch --env-file=.env --tsconfig tsconfig.json -r tsconfig-paths/register index.ts",
+        "build": "yarn prisma:generate && yarn build:app",
+        "build:app": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+        "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/index.js",
+        "test": "vitest run --globals index.spec.ts",
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "database:migrate": "prisma migrate dev --name init_user_model",
+        "prisma:generate": "prisma generate"
+    },
+    "dependencies": {
+        "@prisma/client": "^6.5.0",
+        "axios": "^1.8.3",
+        "bcrypt": "^5.1.1",
+        "compression": "^1.8.0",
+        "express": "^5",
+        "express-rate-limit": "^7.5.0",
+        "express-zod-api": "^22.11.2",
+        "http-errors": "^2.0.0",
+        "jsonwebtoken": "^9.0.2",
+        "node-cache": "^5.1.2",
+        "swagger-ui-express": "^5.0.1",
+        "tsx": "^4.19.3",
+        "typescript": "^5.8.2",
+        "zod": "^3.24.2"
+    },
+    "prisma": {
+        "seed": "tsx prisma/seed.ts"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "**/*.{ts,tsx,js,jsx}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "**/*.{json,md}": [
+            "prettier --write"
+        ],
+        "**/*.ts": [
+            "yarn test --bail --findRelatedTests"
+        ]
+    }
 }

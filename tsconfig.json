@@ -10,9 +10,19 @@
         "baseUrl": "./",
         "outDir": "dist",
         "paths": {
-            "@/*": ["./*"]
-        }
+            "@/*": [
+                "./*"
+            ]
+        },
+        "allowJs": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true
     },
-    "include": ["**/*.ts"],
-    "exclude": ["dist"]
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "dist"
+    ]
 }

@@ -1,18 +1,12 @@
 import { defaultEndpointsFactory } from 'express-zod-api';
+import { authMiddleware, roleBasedMiddleware } from './auth.js';
+import { Role } from '@/config/database.js';
 
-export const adminRouteFactory = defaultEndpointsFactory.addMiddleware({
-    handler: async ({ options: { user } }) => ({ user }) // user from authMiddleware
-});
+export const adminRouteFactory = defaultEndpointsFactory
+    .addMiddleware(authMiddleware)
+    .addMiddleware(roleBasedMiddleware(Role.admin));
 
-export const apiRouteFactory = defaultEndpointsFactory.addMiddleware({
-    handler: async ({ options: { user } }) => ({ user }) // user from authMiddleware
-});
+export const protectedRouteFactory =
+    defaultEndpointsFactory.addMiddleware(authMiddleware);
 
-export const protectedRouteFactory = defaultEndpointsFactory.addMiddleware({
-    handler: async ({ options: { user } }) => ({ user }) // user from authMiddleware
-});
-
-
-export const unprotectedRouteFactory = defaultEndpointsFactory.addMiddleware({
-    handler: async ({ options: { user } }) => ({ user }) // user from authMiddleware
-});
+export const unprotectedRouteFactory = defaultEndpointsFactory;
