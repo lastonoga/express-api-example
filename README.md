@@ -11,7 +11,7 @@ This project is built using modern and efficient technologies:
 - **Zod**: Used for input and output validation, ensuring API requests and responses follow the correct structure.
 - **Prisma ORM**: A modern and type-safe ORM for database interactions, simplifying queries and migrations.
 - **Node-Cache**: Provides in-memory caching to reduce redundant API calls and improve performance.
-- **Auto-Swagger Generation**: Automatically generates API documentation from route definitions.
+- **Auto-Swagger Generation**: Automatically generates API documentation from route definitions. (available at `${url}/docs`)
 - **CORS**: Enables Cross-Origin Resource Sharing to allow external clients to access the API securely.
 - **Gzip Compression**: Improves API response performance by compressing responses before sending them to the client.
 - **Rate Limiter**: Protects the API from abuse by limiting the number of requests a client can make within a specified time frame.
@@ -98,7 +98,6 @@ The project follows a structured approach to keep concerns separate and maintain
 
 This document provides an overview of the available commands in `package.json` for **development, building, linting, formatting, database management, and testing**.
 
----
 
 ### 🚀 Development & Build Commands
 
@@ -108,7 +107,6 @@ This document provides an overview of the available commands in `package.json` f
 | **`yarn build`**   | Runs Prisma client generation (`prisma generate`) and compiles the application. |
 | **`yarn start`**   | Runs the compiled application from `dist/` using `node`, with `ts-node` and `tsconfig-paths` for alias resolution. |
 
----
 
 ### 🛠 Linting & Formatting
 
@@ -119,7 +117,6 @@ This document provides an overview of the available commands in `package.json` f
 | **`yarn format`**  | Formats the code using Prettier. |
 | **`yarn format:check`** | Checks if the code is properly formatted without modifying files. |
 
----
 
 ### 🛢 Database Management (Prisma)
 
@@ -129,7 +126,6 @@ This document provides an overview of the available commands in `package.json` f
 | **`yarn prisma:migrate:dev`** | Runs Prisma migrations for local development. |
 | **`yarn prisma:migrate`**   | Deploys migrations in a production environment. |
 
----
 
 ### 🧪 Testing Commands
 
