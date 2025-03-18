@@ -11,7 +11,7 @@ This project is built using modern and efficient technologies:
 - **Zod**: Used for input and output validation, ensuring API requests and responses follow the correct structure.
 - **Prisma ORM**: A modern and type-safe ORM for database interactions, simplifying queries and migrations.
 - **Node-Cache**: Provides in-memory caching to reduce redundant API calls and improve performance.
-- **Auto-Swagger Generation**: Automatically generates API documentation from route definitions.
+- **Auto-Swagger Generation**: Automatically generates API documentation from route definitions. (available at `${url}/docs`)
 - **CORS**: Enables Cross-Origin Resource Sharing to allow external clients to access the API securely.
 - **Gzip Compression**: Improves API response performance by compressing responses before sending them to the client.
 - **Rate Limiter**: Protects the API from abuse by limiting the number of requests a client can make within a specified time frame.
