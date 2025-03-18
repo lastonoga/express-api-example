@@ -25,21 +25,18 @@ export const createService = (fn: (...args: any) => any) => {
                             `Prisma error: ${error.message}`
                         );
                 }
-            }
-
-            if (error instanceof Prisma.PrismaClientValidationError) {
+            } else if (error instanceof Prisma.PrismaClientValidationError) {
                 throw createHttpError(
                     400,
                     `Validation error: ${error.message}`
                 );
-            }
-
-            if (error instanceof Prisma.PrismaClientInitializationError) {
+            } else if (error instanceof Prisma.PrismaClientInitializationError) {
                 throw createHttpError(500, 'Database initialization failed.');
-            }
-
-            if (error instanceof Prisma.PrismaClientRustPanicError) {
+            } else if (error instanceof Prisma.PrismaClientRustPanicError) {
                 throw createHttpError(500, 'Prisma encountered a panic.');
+            } else {
+                console.log(error)
+                throw error
             }
         }
 

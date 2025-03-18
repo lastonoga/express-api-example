@@ -41,7 +41,11 @@ export const getUserObjectService = createService(async (user: User) => {
 });
 
 export const loginUserService = createService(
-    async (user: User, password: string) => {
+    async (user: User | undefined, password: string) => {
+        if (!user) {
+            throw createHttpError(401, 'Invalid email or password.');
+        }
+        
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
         if (!isPasswordValid) {
