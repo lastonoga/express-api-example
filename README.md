@@ -98,7 +98,6 @@ The project follows a structured approach to keep concerns separate and maintain
 
 This document provides an overview of the available commands in `package.json` for **development, building, linting, formatting, database management, and testing**.
 
----
 
 ### 🚀 Development & Build Commands
 
@@ -108,7 +107,6 @@ This document provides an overview of the available commands in `package.json` f
 | **`yarn build`**   | Runs Prisma client generation (`prisma generate`) and compiles the application. |
 | **`yarn start`**   | Runs the compiled application from `dist/` using `node`, with `ts-node` and `tsconfig-paths` for alias resolution. |
 
----
 
 ### 🛠 Linting & Formatting
 
@@ -119,7 +117,6 @@ This document provides an overview of the available commands in `package.json` f
 | **`yarn format`**  | Formats the code using Prettier. |
 | **`yarn format:check`** | Checks if the code is properly formatted without modifying files. |
 
----
 
 ### 🛢 Database Management (Prisma)
 
@@ -129,7 +126,6 @@ This document provides an overview of the available commands in `package.json` f
 | **`yarn prisma:migrate:dev`** | Runs Prisma migrations for local development. |
 | **`yarn prisma:migrate`**   | Deploys migrations in a production environment. |
 
----
 
 ### 🧪 Testing Commands
 
