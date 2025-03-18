@@ -1,9 +1,11 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
+import { BuiltinLogger } from "express-zod-api";
 
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import NodeCache from 'node-cache';
 import createHttpError from 'http-errors';
 
+// console.log(BuiltinLogger)
 // Initialize cache with 5-minute TTL
 const cache = new NodeCache({ stdTTL: 300 });
 
@@ -36,7 +38,6 @@ export async function fetchWithRetry<T>(
     while (attempt < retries) {
         try {
             const response: AxiosResponse<T> = await axios(url, config);
-
             // Check for valid API response
             if (response.status >= 200 && response.status < 300) {
                 cache.set(cacheKey, response.data); // Cache the response
@@ -49,15 +50,15 @@ export async function fetchWithRetry<T>(
             );
         } catch (error: any) {
             attempt++;
-
-            // Handle rate limiting (HTTP 429 Too Many Requests)
             if (error.response?.status === 429 && attempt < retries) {
                 const retryAfter = error.response.headers['retry-after']
                     ? parseInt(error.response.headers['retry-after'], 10) * 1000
                     : 1000;
                 await new Promise((resolve) => setTimeout(resolve, retryAfter));
-            } else if (attempt >= retries) {
+            } else if (error.response?.status == 404) {
                 throw createHttpError(404, 'There is no such entity');
+            } else if (attempt >= retries) {
+                throw createHttpError(429, 'Too Many Requests');
             }
         }
     }

@@ -94,4 +94,51 @@ The project follows a structured approach to keep concerns separate and maintain
 
 ----
 
+## 📌 Project Scripts Guide
+
+This document provides an overview of the available commands in `package.json` for **development, building, linting, formatting, database management, and testing**.
+
+---
+
+### 🚀 Development & Build Commands
+
+| Command             | Description |
+|---------------------|-------------|
+| **`yarn dev`**     | Starts the development server using `tsx`, watches for file changes, and loads environment variables from `.env`. |
+| **`yarn build`**   | Runs Prisma client generation (`prisma generate`) and compiles the application. |
+| **`yarn start`**   | Runs the compiled application from `dist/` using `node`, with `ts-node` and `tsconfig-paths` for alias resolution. |
+
+---
+
+### 🛠 Linting & Formatting
+
+| Command             | Description |
+|---------------------|-------------|
+| **`yarn lint`**    | Runs ESLint to detect code issues. |
+| **`yarn lint:fix`** | Runs ESLint and automatically fixes errors where possible. |
+| **`yarn format`**  | Formats the code using Prettier. |
+| **`yarn format:check`** | Checks if the code is properly formatted without modifying files. |
+
+---
+
+### 🛢 Database Management (Prisma)
+
+| Command                     | Description |
+|-----------------------------|-------------|
+| **`yarn prisma:generate`**  | Generates the Prisma client based on the latest database schema. |
+| **`yarn prisma:migrate:dev`** | Runs Prisma migrations for local development. |
+| **`yarn prisma:migrate`**   | Deploys migrations in a production environment. |
+
+---
+
+### 🧪 Testing Commands
+
+| Command               | Description |
+|-----------------------|-------------|
+| **`yarn test`**       | Runs all Jest unit and integration tests. |
+| **`yarn test:watch`** | Runs Jest in watch mode, re-running tests on file changes. |
+| **`yarn test:coverage`** | Runs Jest with a coverage report, showing tested lines of code. |
+
+---
+
 This document provides an overview of installation, structure, and package commands to help with setting up and understanding the project.

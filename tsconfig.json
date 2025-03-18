@@ -17,10 +17,13 @@
         "allowJs": true,
         "resolveJsonModule": true,
         "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        // "allowImportingTsExtensions": false,
+        // "noEmit": false,
+        "preserveSymlinks": true
     },
     "include": [
-        "**/*.ts"
+        "**/*.ts",
     ],
     "exclude": [
         "dist"

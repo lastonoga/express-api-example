@@ -1,5 +1,4 @@
 import { createConfig } from 'express-zod-api';
-// @ts-expect-error Bug
 import ui from 'swagger-ui-express';
 import { getSwaggerDocumentation } from './swagger.js';
 import { limiter } from './rate-limiter.js';
@@ -18,7 +17,7 @@ export const config = createConfig({
     },
     beforeRouting: ({ app, getLogger }) => {
         const logger = getLogger();
-
+        
         logger.info(`Serving the API documentation at ${API_URL}/docs`);
 
         app.use('/docs', ui.serve, ui.setup(getSwaggerDocumentation()));
